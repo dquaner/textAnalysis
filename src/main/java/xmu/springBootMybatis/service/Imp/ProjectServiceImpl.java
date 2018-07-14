@@ -9,22 +9,23 @@ import java.io.IOException;
 import java.io.Reader;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import net.lingala.zip4j.exception.ZipException;
 import net.sf.json.JSONArray;
 import xmu.springBootMybatis.config.StaticValue;
+import xmu.springBootMybatis.entity.Info;
 import xmu.springBootMybatis.entity.Project;
 import xmu.springBootMybatis.entity.User;
+import xmu.springBootMybatis.mapper.InfoMapper;
 import xmu.springBootMybatis.mapper.ProjectMapper;
 import xmu.springBootMybatis.service.AsyncTaskService;
 import xmu.springBootMybatis.service.ProjectService;
@@ -36,6 +37,9 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Autowired
 	private ProjectMapper projectMapper;
+	
+	@Autowired
+	private InfoMapper infoMapper;
 	
 	@Autowired
 	private AsyncTaskService asyncTaskService;
@@ -64,6 +68,218 @@ public class ProjectServiceImpl implements ProjectService{
 		return projects;
 	}
 
+	@Override
+	public Map<String, Object> getInfo(long id) {
+		Map<String, Object> infoMap = new HashMap<>();
+    	Info info = infoMapper.getInfoByProjectId(id);
+    	
+    	String[] mStrings = {"none", "none", "none", "none"};
+    	int[] method_num = {0,0,0,0};
+    	int mn=1;
+    	
+    	String[] m_improve = {"none", "none", "none"};
+    	int[] m_improve_num = {0,0,0};
+    	int m_improven=2;
+    	
+    	String[] eStrings = {"none", "none", "none"};
+    	int[] e_num = {0,0,0};
+    	int en=1;
+    	
+    	String[][] wordsegmentations = {{"SmartChineseAnalyzer","A tool provided by a text retrieval system called Lucene. It uses a large number of corpuses in the Hidden Markov Model (HMM) to calculate the word statistics. Then, the statistical results are used to calculate the optimal segmentation results for the text."},
+    			{"IKAnalyzer","A lightweight Chinese word segmentation toolkit that developed an ambiguity analysis algorithm to optimize the query arrangement and combination of query keywords, which can greatly improve the hit rate of Lucene search."},
+    			{"Ansj","A java implementation of Chinese word segmentation based on n-Gram, CRF and HMM. The speed of word segmentation reaches about 2 million words per second, and the accuracy rate can reach over 96%."},
+    			{"Jieba","Jieba segmentation uses dynamic programming to find the maximum probability path, and then finds the largest segmentation based on word frequency. For the unregistered words, the HMM and the Viterbi algorithm are used."},
+    			{"HanLP","HanLP is a Java toolkit consisting of a series of models with different solutions. The goal is to popularize the application of natural language processing in the production environment."},
+    			{"Word Segmentation Based on Knowledge Graphs","Choose the most appropriate segmentation result based on the correlation between the word and the topic of the text which is computed by semantic similarity using knowledge graph."}};
+    	
+    	String[][] classifiers = {{"KNN","K nearest neighbors is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions)."},
+    			{"SVM","An SVM model is a representation of the examples as points in space, mapped so that the examples of the separate categories are divided by a clear gap that is as wide as possible."},
+    			{"LR","The probabilities describing the possible outcomes of a single trial are modeled using a logistic function. "},
+    			{"Deep Learning","Nonlinear models, which makes them flexible in modeling real world complex relationships. Be able to estimate the posterior probabilities, which provide the basis for establishing classification rule and performing statistical analysis."},
+    			{"Algorithm Based on Knowledge Graphs","Improved KNN and SVM based on Knowledge Graphs."}};
+    	
+    	String[][] clusters = {{"DBSCAN","The DBSCAN algorithm views clusters as areas of high density separated by areas of low density. Due to this rather generic view, clusters found by DBSCAN can be any shape, as opposed to k-means which assumes that clusters are convex shaped."},
+    			{"BIRCH","The Birch builds a tree called the Characteristic Feature Tree (CFT) for the given data. The data is essentially lossy compressed to a set of Characteristic Feature nodes (CF Nodes)."},
+    			{"K-means","The KMeans algorithm clusters data by trying to separate samples in n groups of equal variance, minimizing a criterion known as the inertia or within-cluster sum-of-squares. This algorithm requires the number of clusters to be specified. It scales well to large number of samples and has been used across a large range of application areas in many different fields."},
+    			{"K-means Based on Knowledge Graphs","We use a new distance as we call the concept distance. Based on the related knowledge graph, we query the shortest length of path among words of two documents."}};
+    	
+    	String ws_string = info.getWord_segmentation();
+    	String classifier_string = info.getClassifier();
+    	String cluster_string = info.getCluster();
+    	
+    	if(ws_string==null || ws_string=="") {
+    		mStrings[0] = "none";
+    	}else {
+    		List<String> ws_str = Arrays.asList(ws_string.split(","));
+    		//method3.1
+        	if(ws_str.size()==1 && ws_str.get(0).equals("5")) {
+        		mStrings[0] = "none";
+        	}else {
+        		mStrings[0] = "block";
+        		method_num[0] = mn;
+        		mn++;
+        	}
+        	//method3.4
+        	if(ws_str.contains("5")) {
+        		mStrings[3] = "block";
+        		m_improve[0] = "block";
+        		m_improve_num[0] = m_improven;
+        		m_improven++;
+        	}
+        	
+        	String[] ws = {"none","none","none","none","none"};
+        	int[] ws_num = {0,0,0,0,0};
+        	int wsn = 1;
+        	for( int i=0; i<5; i++) {
+        		if(ws_str.contains(String.valueOf(i))) {
+        			ws[i] = "block";
+        			ws_num[i] = wsn;
+        			wsn++;
+        		}
+        	}
+        	infoMap.put("ws", ws);
+        	infoMap.put("ws_num", ws_num);
+        	
+        	//experiment
+        	eStrings[0] = "block";
+        	e_num[0] = en;
+        	en++;
+        	
+        	List<String[]> wsList = new ArrayList<String[]>();
+        	for( int i=0; i<6; i++) {
+        		if(ws_str.contains(String.valueOf(i))) {
+        			wsList.add(wordsegmentations[i]);
+        		}
+        	}
+        	infoMap.put("wsList", wsList);
+        	infoMap.put("ws_figure", info.getWs_figure());
+        	infoMap.put("ws_table", info.getWs_table());
+        	infoMap.put("best_ws", info.getBest_segmention());
+    	}
+    	en++;
+    	
+    	if(classifier_string==null || ws_string=="") {
+    		mStrings[1] = "none";
+    	}else {
+    		List<String> classifier = Arrays.asList(classifier_string.split(","));
+    		if(classifier.size()==1 && classifier.get(0).equals("4")) {
+        		mStrings[1] = "none";
+        	}else {
+        		mStrings[1] = "block";
+        		method_num[1] = mn;
+        		mn++;
+        	}
+        	//method3.4
+        	if(classifier.contains("4")) {
+        		mStrings[3] = "block";
+        		m_improve[1] = "block";
+        		m_improve_num[1] = m_improven;
+        		m_improven++;
+        	}
+        	
+        	String[] classify = {"none","none","none","none"};
+        	int[] classify_num = {0,0,0,0};
+        	int classifyn = 1;
+        	for( int i=0; i<4; i++) {
+        		if(classifier.contains(String.valueOf(i))) {
+        			classify[i] = "block";
+        			classify_num[i] = classifyn;
+        			classifyn++;
+        		}
+        	}
+        	infoMap.put("classify", classify);
+        	infoMap.put("classify_num", classify_num);
+        	
+        	//
+        	eStrings[1] = "block";
+        	e_num[1] = en;
+        	en++;
+        	
+        	List<String[]> classifierList = new ArrayList<String[]>();
+        	for( int i=0; i<5; i++) {
+        		if(classifier.contains(String.valueOf(i))) {
+        			classifierList.add(classifiers[i]);
+        		}
+        	}
+        	infoMap.put("classifierList", classifierList);
+        	infoMap.put("classify_figure", info.getClassify_figure());
+        	infoMap.put("classify_table", info.getClassify_table());
+        	infoMap.put("best_classifier", info.getBest_classifier());
+
+    	}
+    	
+    	if(cluster_string==null || cluster_string=="") {
+    		mStrings[2] = "none";
+    	}else {
+    		List<String> cluster_str = Arrays.asList(cluster_string.split(","));
+    		if(cluster_str.size()==1 && cluster_str.get(0).equals("3")) {
+        		mStrings[2] = "none";
+        	}else {
+        		mStrings[2] = "block";
+        		method_num[2] = mn;
+        		mn++;
+        	}
+        	//method3.4
+        	if(cluster_str.contains("3")) {
+        		mStrings[3] = "block";
+        		m_improve[2] = "block";
+        		m_improve_num[2] = m_improven;
+        		m_improven++;
+        	}
+        	
+        	String[] cluster = {"none","none","none"};
+        	int[] cluster_num = {0,0,0};
+        	int clustern = 1;
+        	for( int i=0; i<3; i++) {
+        		if(cluster_str.contains(String.valueOf(i))) {
+        			cluster[i] = "block";
+        			cluster_num[i] = clustern;
+        			clustern++;
+        		}
+        	}
+        	infoMap.put("cluster", cluster);
+        	infoMap.put("cluster_num", cluster_num);
+        	
+        	//
+        	eStrings[2] = "block";
+        	e_num[2] = en;
+        	en++;
+        	List<String[]> clusterList = new ArrayList<String[]>();
+        	for( int i=0; i<4; i++) {
+        		if(cluster_str.contains(String.valueOf(i))) {
+        			clusterList.add(clusters[i]);
+        		}
+        	}
+        	infoMap.put("clusterList", clusterList);
+    		infoMap.put("cluster_figure", info.getCluster_figure());
+        	infoMap.put("cluster_table", info.getCluster_table());
+        	infoMap.put("best_cluster", info.getBest_cluster());
+    	}
+    	
+    	infoMap.put("method", mStrings);
+    	if(mStrings[3].equals("block")) {
+    		method_num[3]=mn;
+    		infoMap.put("m_improve", m_improve);
+    		infoMap.put("m_improve_num", m_improve_num);
+    	}
+    	infoMap.put("method_num", method_num);
+    	
+    	int dsnum = info.getDataset_num();
+    	if(dsnum>1) {
+    		infoMap.put("dsnum", dsnum+" real datasets");
+    	}else {
+    		infoMap.put("dsnum", dsnum+" real dataset");
+    	}
+    	
+    	infoMap.put("datasets", info.getDatasets());
+    	infoMap.put("eStrings", eStrings);
+    	infoMap.put("e_num", e_num);
+    	
+    	infoMap.put("sa_figure", info.getSa_figure());
+    	infoMap.put("sa_table", info.getSa_table());
+        return infoMap;
+	}
+	
 	//获取文件的存储路径
 	@Override
 	public String getPath() {
@@ -728,5 +944,7 @@ public class ProjectServiceImpl implements ProjectService{
 		}
     	
     }
+
+	
 	
 }

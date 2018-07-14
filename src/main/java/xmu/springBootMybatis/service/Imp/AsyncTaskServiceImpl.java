@@ -6,14 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import xmu.springBootMybatis.entity.Project;
 import xmu.springBootMybatis.mapper.ProjectMapper;
 import xmu.springBootMybatis.service.AsyncTaskService;
 import xmu.springBootMybatis.tools.AnsjTest;
 import xmu.springBootMybatis.tools.HanlpTest;
-import xmu.springBootMybatis.tools.IkTest;
 import xmu.springBootMybatis.tools.JiebaTest;
 import xmu.springBootMybatis.tools.SmartcnTest;
 
@@ -28,9 +26,6 @@ public class AsyncTaskServiceImpl implements AsyncTaskService{
 	
 	@Autowired
 	private HanlpTest hanlpTest;
-	
-	@Autowired
-	private IkTest ikTest;
 	
 	@Autowired
 	private JiebaTest jiebaTest;
@@ -251,9 +246,6 @@ public class AsyncTaskServiceImpl implements AsyncTaskService{
 		//分词并输出
 		if(tools.equals("smartChineseAnalyzer")) {
 			smartcnTest.smartcnTools(text, resultPath);
-		}
-		else if(tools.equals("IK")) {
-			ikTest.ikTest(text, resultPath);
 		}
 		else if(tools.equals("ansj")) {
 			ansjTest.ansjTools(text, resultPath);

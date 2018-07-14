@@ -2,7 +2,6 @@ package xmu.springBootMybatis.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +54,6 @@ public class ProjectController {
 		mav.addObject("projects", projects);
         return mav;    
 	} 
-	
 	
 	@RequestMapping(value="/unfinishTable")    
     public ModelAndView unfinishTable(HttpSession session){ 
@@ -192,7 +189,96 @@ public class ProjectController {
 		
 		modelAndView.addObject("model",model);
         return modelAndView;    
-	}  
+	} 
+	
+	@RequestMapping(value="/papersummary") 
+	@ResponseBody
+    public ModelAndView papersummary(@PathParam(value="projectId") long projectId ){  
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("html/papersummary");
+		Map<String, Object> infoMap = projectService.getInfo(projectId);
+		
+		String[] method = (String[]) infoMap.get("method");
+		modelAndView.addObject("method", method);
+		modelAndView.addObject("method_num", (int[]) infoMap.get("method_num"));
+		if (method[0].equals("block")) {
+			modelAndView.addObject("ws", (String[]) infoMap.get("ws"));
+			modelAndView.addObject("ws_num", (int[]) infoMap.get("ws_num"));
+		}
+		if (method[1].equals("block")) {
+			modelAndView.addObject("classify", (String[]) infoMap.get("classify"));
+			modelAndView.addObject("classify_num", (int[]) infoMap.get("classify_num"));
+		}
+		if (method[2].equals("block")) {
+			modelAndView.addObject("cluster", (String[]) infoMap.get("cluster"));
+			modelAndView.addObject("cluster_num", (int[]) infoMap.get("cluster_num"));
+		}
+		if (method[3].equals("block")) {
+			modelAndView.addObject("m_improve", (String[]) infoMap.get("m_improve"));
+			modelAndView.addObject("m_improve_num", (int[]) infoMap.get("m_improve_num"));
+		}
+
+		modelAndView.addObject("dsnum", (String) infoMap.get("dsnum"));
+		modelAndView.addObject("datasets", (List<String>) infoMap.get("datasets"));
+		modelAndView.addObject("eStrings", (String[]) infoMap.get("eStrings"));
+		modelAndView.addObject("e_num", (int[]) infoMap.get("e_num"));
+
+		modelAndView.addObject("wsList", (List<String[]>) infoMap.get("wsList"));
+		modelAndView.addObject("classifierList", (List<String[]>) infoMap.get("classifierList"));
+		modelAndView.addObject("clusterList", (List<String[]>) infoMap.get("clusterList"));
+
+		modelAndView.addObject("ws_figure", (String) infoMap.get("ws_figure"));
+		modelAndView.addObject("ws_table", (String) infoMap.get("ws_table"));
+		modelAndView.addObject("best_ws", (String) infoMap.get("best_ws"));
+
+		modelAndView.addObject("classify_figure", (String) infoMap.get("classify_figure"));
+		modelAndView.addObject("classify_table", (String) infoMap.get("classify_table"));
+		modelAndView.addObject("best_classifier", (String) infoMap.get("best_classifier"));
+
+		modelAndView.addObject("cluster_figure", (String) infoMap.get("cluster_figure"));
+		modelAndView.addObject("cluster_table", (String) infoMap.get("cluster_table"));
+		modelAndView.addObject("best_cluster", (String) infoMap.get("best_cluster"));
+
+		modelAndView.addObject("sa_figure", (String) infoMap.get("sa_figure"));
+		modelAndView.addObject("sa_table", (String) infoMap.get("sa_table"));
+        return modelAndView;    
+	}
+	
+	@RequestMapping(value="/experiment") 
+	@ResponseBody
+    public ModelAndView experiment(@PathParam(value="projectId") long projectId ){  
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("html/experiment");
+		Map<String, Object> infoMap = projectService.getInfo(projectId);
+
+		modelAndView.addObject("dsnum", (String) infoMap.get("dsnum"));
+		modelAndView.addObject("datasets", (List<String>) infoMap.get("datasets"));
+		modelAndView.addObject("eStrings", (String[]) infoMap.get("eStrings"));
+		modelAndView.addObject("e_num", (int[]) infoMap.get("e_num"));
+
+		modelAndView.addObject("wsList", (List<String[]>) infoMap.get("wsList"));
+		modelAndView.addObject("classifierList", (List<String[]>) infoMap.get("classifierList"));
+		modelAndView.addObject("clusterList", (List<String[]>) infoMap.get("clusterList"));
+
+		modelAndView.addObject("ws_figure", (String) infoMap.get("ws_figure"));
+		modelAndView.addObject("ws_table", (String) infoMap.get("ws_table"));
+		modelAndView.addObject("best_ws", (String) infoMap.get("best_ws"));
+
+		modelAndView.addObject("classify_figure", (String) infoMap.get("classify_figure"));
+		modelAndView.addObject("classify_table", (String) infoMap.get("classify_table"));
+		modelAndView.addObject("best_classifier", (String) infoMap.get("best_classifier"));
+
+		modelAndView.addObject("cluster_figure", (String) infoMap.get("cluster_figure"));
+		modelAndView.addObject("cluster_table", (String) infoMap.get("cluster_table"));
+		modelAndView.addObject("best_cluster", (String) infoMap.get("best_cluster"));
+
+		modelAndView.addObject("sa_figure", (String) infoMap.get("sa_figure"));
+		modelAndView.addObject("sa_table", (String) infoMap.get("sa_table"));
+        return modelAndView;    
+	}
+	
 	
 	@RequestMapping(value="/changePath")
 	@ResponseBody

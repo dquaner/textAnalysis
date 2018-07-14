@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import xmu.springBootMybatis.entity.User;
 import xmu.springBootMybatis.entity.UserRole;
 
 @Mapper

@@ -10,6 +10,8 @@ public interface ProjectService {
 	
 	public List<Project> getProjectByType(int finish_or_not,long user_id);
 	
+	public Map<String,Object> getInfo(long id);
+	
 	public String getPath();
 	
 	public int changePath(String location);

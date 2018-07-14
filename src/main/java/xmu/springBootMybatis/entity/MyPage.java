@@ -1,7 +1,6 @@
 package xmu.springBootMybatis.entity;
 
 import java.util.List;
-
 import com.github.pagehelper.Page;
 
 public class MyPage<T> {  
