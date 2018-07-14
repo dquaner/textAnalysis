@@ -1,0 +1,371 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Experiment</title>
+<style type="text/css">
+@page {
+	margin-left: 1.25in;
+	margin-right: 1.25in;
+	margin-top: 1in;
+	margin-bottom: 1in
+}
+
+p.western {
+	font-family: "Calibri", serif;
+	font-size: 12pt
+}
+
+p.cjk {
+	font-size: 12pt
+}
+
+p.ctl {
+	font-size: 14pt
+}
+
+a:link {
+	color: #0000ff
+}
+</style>
+</head>
+<body>
+		<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>Experiment</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We conduct a series of experiments to evaluate the performance of the comparision algorithms over <span th:text="${dsnum}"></span>.
+				In this section, we describe the experimental setup followed by the discussion of results.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>1.Settings</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">In this paper, we use <span th:text="${dsnum}"></span> that are available publicly. The details are shown as follows.</font>
+		</font>
+	</p>
+	<ol>
+		<li th:each="dataset : ${datasets}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${dataset.name}"></b><b>:</b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${dataset.description}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%; orphans: 2; widows: 2">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><span style="letter-spacing: -0.1pt">Table 1: Datasets</span></font>
+		</font>
+	</p>
+		<table style="margin:0 auto; border-collapse: collapse;">
+			<col width="120">
+			<col width="125">
+			<col width="155">
+			<col width="155">
+			<col width="155">
+			<tr>
+				<td width="120" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>name</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="125" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>number of text</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>maximum text size</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>minimum text size</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>average text size</b></font>
+						</font>
+					</p>
+				</td>
+			</tr>
+			<tr th:each="dataset : ${datasets}">
+				<td width="120" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b th:text="${dataset.name}"></b></font>
+						</font>
+					</p>
+				</td>
+				<td width="125" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.textnum}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.maxlen}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.minlen}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.averlen}"></font>
+						</font>
+					</p>
+				</td>
+			</tr>
+		</table>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br/>
+	</p>
+
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>2.Results</b></font>
+		</font>
+	</p>
+	<div id="ws_result" th:style="'display:'+${eStrings[0]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'2.'+${e_num[0]}+' Word Segmentation Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For word segmentation methods, we conduct a group of experiment that compares our proposed algorithm with other algorithms.
+				In the experiments, we choose the average accuracy rate, recall rate and F1 score in results as the evaluating metrics,
+				and run all the algorithms on all datasets. We benchmark the following baseline methods for word segmentation:</font>
+		</font>
+	</p>
+	<ol>
+		<li  th:each="ws: ${wsList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 1 shows the average accuracy rate, recall rate and F1 score of different algorithms on all the three datasets.
+				The algorithm has been sorted in ascending order of F-score values. At the same time, Table 2 gives specific results.
+				As shown in the figure, we can find that <span th:text="${best_ws}"></span> has significantly improved performance compared to other
+				algorithms.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${ws_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 1. The Comparison of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 2: Word Segmentation Performance of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${ws_table}" name="result002" align="bottom" hspace="1" vspace="1" width="600" height="385" border="0"
+		/>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	<div id="sa_result">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">2.2 Sentiment Analysis</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We performed sentiment analysis over all datasets. Figure 2 shows the visualized results of the sentiment analysis; Table
+				3 shows the results of the sentiment classification.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${sa_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="350" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 2. The Visualized Results of Sentiment Analysis</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 3: The Results of Sentiment Classification</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${sa_table}" name="result002" align="bottom" hspace="1" vspace="1" width="550" height="90" border="0"
+		/>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	
+	<div id="cf_result" th:style="'display:'+${eStrings[1]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'2.'+${e_num[1]}+' Text Classification Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For text classification algorithms, we choose the average accuracy rate, recall rate and F1 score in
+				results as the evaluating metrics, and we benchmark the following baseline methods for word segmentation:</font>
+		</font>
+	</p>
+		<ol>
+		<li th:each="ws: ${classifierList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 3 shows the average accuracy rate, recall rate and F1 score of different algorithms over all the datasets. At the
+				same time, Table 4 gives specific results. As shown in the figure, we can find that <span th:text="${best_classifier}"></span> has significantly
+				improved performance compared to other algorithms.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${classify_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 3. The Comparison of Different Classification Algorithm</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 4: Text Classification Performance of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${classify_table}" name="result006" align="bottom" hspace="1" width="600" height="285" border="0" />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	
+	<div id="cf_result" th:style="'display:'+${eStrings[2]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'2.'+${e_num[2]}+' Text Clustering Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Evaluating the performance of a clustering algorithm is not as trivial as counting the number of errors or the precision
+				and recall of a supervised classification algorithm. In particular any evaluation metric should not take the absolute
+				values of the cluster labels into account but rather if this clustering define separations of the data similar to some
+				ground truth set of classes or satisfying some assumption such that members belong to the same class are more similar
+				that members of different classes according to some similarity metric. In the experiments, we choose the homogeneity,
+				completeness and their V-measure as the evaluating metric.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For text clustering, we conduct a group of experiment that compares our proposed algorithm with other algorithms on all
+				the datasets. We benchmark the following baseline methods:</font>
+		</font>
+	</p>
+	<ol>
+		<li th:each="ws: ${clusterList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 4 shows the result over all the datasets. At the same time, Table 5 gives specific results. It is observed that
+				comparing a series clustering methods, <span th:text="${best_cluster}"></span> gives better results. Among all approaches, <span th:text="${best_cluster}"></span>
+				outperforms other baselines on all the datasets.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${cluster_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 4. The Comparison of Different Clustering Algorithm</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 5: Evaluation of Different Clustering Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${cluster_table}" name="result007" align="bottom" hspace="1" width="800" height="120" border="0" />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br/>
+	</p>
+	</div>
+</body>
+
+</html>

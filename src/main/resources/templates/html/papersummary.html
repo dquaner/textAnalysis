@@ -1,0 +1,1401 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Paper Summary</title>
+<style type="text/css">
+@page {
+	margin-left: 1.25in;
+	margin-right: 1.25in;
+	margin-top: 1in;
+	margin-bottom: 1in
+}
+
+p.western {
+	font-family: "Calibri", serif;
+	font-size: 12pt
+}
+
+p.cjk {
+	font-size: 12pt
+}
+
+p.ctl {
+	font-size: 14pt
+}
+
+a:link {
+	color: #0000ff
+}
+</style>
+</head>
+<body lang="en-US" link="#0000ff" dir="ltr">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>1.Introduction</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">With the development of technology, especially the continuous progress of Internet technology, a large number of different
+				information resources have rapidly increased. About 70% of the information that these people face is textual information.
+				People are eager to efficiently and accurately find textual information that is truly useful to themselves from a vast
+				amount of textual information. The emergence of text categorization technology has effectively solved this problem to
+				a certain extent, and has provided powerful help for people to find useful text information.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">There are many factors influencing the effect of text categorization, including the process of word segmentation, the
+				process of feature extraction, the classification process, and the clustering process.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For the experimental results of our improved algorithm, this dissertation use a unified indicator to compare the experimental
+				results of different methods, these indicators include accuracy (P), recall rate (F) and F measure (F) three indicators,
+				through Experiments have proved the effectiveness of our improved algorithm. At the same time, it also proves that the
+				improved algorithm has a significant improvement over other algorithms.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>2.Related work</b></font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>2.1 Word Segmentation</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">There have been many efforts towards studying on Chinese word segmentation. In 1983, Liang Nanyuan first applied the maximum
+				matching method (MM) to the Chinese word segmentation [1]. Later, several improved algorithms based on MM have been proposed
+				[2][3]. This group of algorithms with word segmentation ambiguity and unregistered words. To solve this problem, researchers
+				applied machine learning algorithms to segmenting words [4]. Such algorithms are based on statistics. The disadvantage
+				is that the machine is simple and navie. The disadvantage is that it depends heavily on the vocabulary, and it cannot
+				deal earning algorithms often have very high complexity. Recently, the deep learning method has brought new ideas for
+				Chinese word segmentation technologies. Directly based on basic vectorized atom features, the output layer can be used
+				to predict the word's mark or next action through multi-layer nonlinear transformation. In the framework of deep learning,
+				sub-sequence tagging, or transfer based methods, and Markov Conditional Random Fields can still be used [5].</font>
+		</font>
+	</p> 
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>2.2 Feature Extraction</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For feature extraction, although the common feature extraction methods have good extraction effects, they often ignore
+				the feature words which play an important role in a segment but are not import in the full text. To a certain extent,
+				the feature extraction is incomplete. This paper uses knowledge graph to calculate the semantic similarity between feature
+				words, and then selects the top K feature words with the largest semantic similarity scores as feature vectors, which
+				improves the comprehensiveness of feature selection and improves the accuracy of feature selection [6].</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>2.3 Text Classification</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The automatic classification of documents into predefined categories has observed as an active attention, the documents
+				can be classified by three ways, unsupervised, supervised and semi-supervised methods. From last few years, the task
+				of automatic text classification have been extensively studied and rapid progress seems in this area, including the machine
+				learning approaches such as K-nearest neighbor(KNN), Support Vector Machines(SVM), Naive Bayes classifier and Neural
+				Networks.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">A.KNN</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">This algorithm performs the classification, by contrasting a given test sample with training samples which are related
+				to it. Whenever a new point is found in the classification, its k-nearest neighbor is found first from the training information.
+				KNN determines the label of unknown vector by utilizing its K nearest neighbors. KNN is a very simple classifier taking
+				into account essential recognition issues. The major disadvantage of KNN is that it is a lazy- learner. For classification
+				it does not learn itself from training data. Vishwanath Bijalwan et al [7] compare KNN with Navie Bayes and term graph
+				and found that KNN shows maximum accuracy than other methods.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">B.SVM</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">SVM is a binary classifier i.e. it takes care of classification problem of two classes. It is a large margin classifier,
+				based on the vector space. SVM is utilized to find a decision boundary between two classes that is maximally distant
+				from any point in the training data and the distance of the decision surface to the nearest data point is known as the
+				classifier's edge. Those points which describe the position of the separator are known as support vectors. For good classification
+				decisions margins must be maximized. SVM separates the training set with two ways, the first way of document separation
+				is linear separation and when adds complication then usage kernel functions.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Some examples of the kernels are: linear kernel, Gaussian kernel, Exponential kernel, polynomial kernel, Hybrid kernel,
+				etc. Selection of an appropriate kernel function is an important task. It is common practice to select the best one.
+				For this reason SVM shows the drawback of the low speed of training. Fast Training of Support Vector Machines using Sequential
+				Minimal Optimization (SMO), implemented by J. Platt in 1998 [8]. Vapnik [9] tested and compared the performance of SVM
+				with other algorithms and found that it performs well. Simon Tong et al [10] applying SVM for image retrieval and find
+				that performance of information retrieval is increased.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">C.Naive Bayes</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">This algorithm comes under probabilistic approach. It is a statistical method and estimations a set of probabilistic parameters
+				that intended the restrictive and combined probability distribution of classifications and context. It based on Bayes
+				rule, and relies on very simple representation of documents [11]. Researcher David D. Lewis [12] shows in his experiments
+				that the Naive Bayes classifier has been remarkably successful in information retrieval. Short computational time for
+				training is the main advantage of the Naïve Bayes classifier. An issue that emerges in Naive Bayes classifier is that
+				it requires a substantial number of records for better results.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">D.Neural Network </font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Neural networks [13] [14] [15] [16] have emerged as an important tool for classification. One major limitation of the
+				statistical models (e.g. Naive Bayes) is that they work well only when the underlying assumptions are satisfied. But
+				neural networks are data driven self-adaptive methods in that they can adjust themselves to the data without any explicit
+				specification of functional or distributional form for the underlying model. 1) Advantages: Neural networks are nonlinear
+				models, which makes them flexible in modeling real world complex relationships. Neural networks are able to estimate
+				the posterior probabilities, which provide the basis for establishing classification rule and performing statistical
+				analysis. More than two hidden nodes provide better classification. 2) Limitation: With increase in the number of input
+				and hidden nodes, the parameters needed for neural network also increases this result in over fitting of the data.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">E.Knowledge Graph</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">This method uses knowledge graph to calculate the concept distance between word vectors to improve the KNN classification
+				algorithm, mainly to improve the measurement of similar distances. The concept of distance between texts is added on
+				the basis of distance, which can better reflect the similar distance between word vectors and improve the effect of text
+				classification.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>2.4 Text Clustering</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The clustering is the task of finding groups of similar documents in a collection of documents. The similarity is computed
+				by using a similarity function. Text clustering algorithms are split into many different types such as agglomerative
+				clustering algorithms, partitioning algorithms and probabilistic clustering algorithms. Clustering algorithms have varied
+				trade offs in terms of effectiveness and efficiency. For an experimental comparison of different clustering algorithms
+				see [17][18], and for a survey of clustering algorithms see [19]. This paper uses the hierarchical text clustering algorithm
+				proposed in [20].</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>3.Methodology</b></font>
+		</font>
+	</p>
+	
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We present a series of comparison methods in this section. </font>
+		</font>
+	</p>
+
+	<div id="m_ws" th:style="'display:'+${method[0]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b th:text="'3.'+${method_num[0]}+' Word Segmentation'"></b></font>
+		</font>
+	</p>
+	<div id="SmartChineseAnalyzer" th:style="'display:'+${ws[0]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${ws_num[0]}+'.SmartChineseAnalyzer'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">SmartChineseAnalyzer is a tool provided by a text retrieval system called Lucene. It uses a large number of corpuses in
+				the Hidden Markov Model (HMM) to calculate the word statistics. Then, the statistical results are used to calculate the
+				optimal segmentation results for the text. SmartChineseAnalyzer is an analyzer for Chinese or mixed Chinese-English text.
+				The analyzer uses probabilistic knowledge to find the optimal word segmentation for Simplified Chinese text. The text
+				is first broken into sentences, then each sentence is segmented into words. Segmentation is based upon the Hidden Markov
+				Model. A large training corpus was used to calculate Chinese word frequency probability. This analyzer requires a dictionary
+				to provide statistical data. SmartChineseAnalyzer has an included dictionary out-of-box.</font>
+		</font>
+	</p>
+	</div>
+	<div id="IKAnalyzer" th:style="'display:'+${ws[1]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${ws_num[1]}+'.IKAnalyzer'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">IKAnalyzer is a lightweight Chinese word segmentation toolkit that developed an ambiguity analysis algorithm to optimize
+				the query arrangement and combination of query keywords, which can greatly improve the hit rate of Lucene search. However,
+				IKAnalyzer is not support texts containing of both Chinese and English. First, we need to instantiate an IKAnalyzer.
+				The parameter isMaxWordLength identifies whether IK uses the largest word-length segmentation algorithm or the finest-grained
+				segmentation algorithm. The maximum word length segmentation is the filtering of the most fine-grained segmentation results,
+				selecting the longest segmentation result. The IKAnalyzer class rewrites the Analyzer's tokenStream method. The tokenStream
+				method handles the text input stream to generate a token, which is Lucene's smallest token term.</font>
+		</font>
+	</p>
+	</div>
+	<div id="Ansj" th:style="'display:'+${ws[2]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${ws_num[2]}+'.Ansj'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">This is a java implementation of Chinese word segmentation based on n-Gram, CRF and HMM. The speed of word segmentation
+				reaches about 2 million words per second, and the accuracy rate can reach over 96%. Ansj currently implemented the application
+				of Chinese word segmentation, Chinese name recognition, user-defined dictionary, keyword extraction, automatic summary,
+				keyword tagging, etc. It can be applied to natural language processing and other aspects, suitable for various items
+				that require high word segmentation effects.</font>
+		</font>
+	</p>
+	</div>
+	<div id="Jieba" th:style="'display:'+${ws[3]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${ws_num[3]}+'.Jieba'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0.1in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Jieba segmentation uses dynamic programming to find the maximum probability path, and then finds the largest segmentation
+				based on word frequency. For the unregistered words, the HMM and the Viterbi algorithm are used. The jieba participle
+				belongs to the probabilistic language model participle: a certain segmentation scheme S is obtained among all the results
+				obtained by the full segmentation, so that P(S) is the largest.First, a full-cut directed acyclic graph is generated:
+				the sentence is fully segmented according to the trie tree, and a directed acyclic graph (DAG) represented by the adjacency
+				list is generated. Then, the dynamic segmentation algorithm is used to calculate the optimal segmentation path based
+				on the generated word graph. At the same time, the jieba algorithm uses the HMM model to identify unregistered words:
+				such as the identification of unregistered nouns such as Chinese names, foreign names, place names, and institution names.The
+				main process of querying dictionary to form the segmentation word graph is as follows:
+			</font>
+		</font>
+	</p>
+	<table>
+		<col width="540">
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western">
+					<font face="Cambria Math, serif">
+						<font size="3" style="font-size: 12pt"><span style="letter-spacing: -0.1pt"> <b>Algorithm:</b> Query dictionary to form the DAG</span></font>
+					</font>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western">
+					<font face="Cambria Math, serif" size="3" style="font-size: 12pt">
+						<span style="letter-spacing: -0.1pt"><b>for</b>(<b>int</b> i=0; i&lt;len;){</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;">//Query in the dictionary </span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;"><b>boolean</b> match = dict.getMatch(sentence, i, wordMatch); </span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;"><b>if</b>(match){//has been matched </span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;"><b>for</b>(<b>String</b> word: wordMatch.values){</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 6em;">//Add the queried words as edges to graph</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 6em;">j = i + word.length();</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 6em;">g.addEdge(new CnToken(i, j, 10, word));</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;">}</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;">i=wordMatch.end;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;">}<b>else</b>{//Add the literial as an edge to graph</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;">j = i + 1;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;"> g.addEdge(new CnToken(i,j,1,sentence.substring(i,j)));</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;">i = j;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;">}</span><br/>
+						<span style="letter-spacing: -0.1pt;">}</span><br/>
+					</font>
+				</p>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<div id="HanLP" th:style="'display:'+${ws[4]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${ws_num[4]}+'.HanLP'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">HanLP is a Java toolkit consisting of a series of models with different solutions. The goal is to popularize the application
+				of natural language processing in the production environment. HanLP has a series of "out-of-the-box" static word breakers,
+				ending with Tokenizer. Users can choose the appropriate method according to their needs.</font>
+		</font>
+	</p>
+	</div>
+
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	<div id="m_classify" th:style="'display:'+${method[1]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b th:text="'3.'+${method_num[1]}+' Text Classification'"></b></font>
+		</font>
+	</p>
+	<div id="KNN" th:style="'display:'+${classify[0]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${classify_num[0]}+'.KNN'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">KNN is a classical statistical pattern recognition algorithm. Its idea is very simple: for a text document to be classified,
+				K nearest neighbors should first be found out according to a certain similarity computing strategy, then all the neighbors
+				similarity be added according to their category respectively. Finally, classify the text document into the category with
+				maximum similarity. KNN can be represented by the following formula:
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula004.gif" align="bottom" hspace="8" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Where <i>x</i> is the document to be classified, <i>d<sub>i</sub></i> is the ith sample document,
+				<i>c<sub>j</sub></i> is the jth category, and </font>
+		</font> <img src="/images/papersummary/formula005.gif" style="vertical-align:middle;" />
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"> denotes whether document <i>d<sub>i</sub></i> belongs to category <i>c<sub>j</sub></i>;
+				<i>b<sub>j</sub></i> is a preset threshold. <i>Sim(x,d<sub>i</sub>)</i> is the cosine similarity between the document
+				to be classified and the sample document.</font>
+		</font>
+	</p>
+	</div>
+	<div id="SVM" th:style="'display:'+${classify[1]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${classify_num[1]}+'.SVM'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">SVM is a binary classifier i.e. it takes care of classification problem of two classes. It is a large margin classifier,
+				based on the vector space. SVM is utilized to find a decision boundary between two classes that is maximally distant
+				from any point in the training data and the distance of the decision surface to the nearest data point is known as the
+				classifier's edge. Those points which describe the position of the separator are known as support vectors. For good classification
+				decisions margins must be maximized. SVM separates the training set with two ways, the first way of document separation
+				is linear separation and when adds complication then usage kernel functions.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Some examples of the kernels are: linear kernel, Gaussian kernel, Exponential kernel, polynomial kernel, Hybrid kernel,
+				etc. Selection of an appropriate kernel function is an important task. It is common practice to select the best one.
+				For this reason SVM shows the drawback of the low speed of training.</font>
+		</font>
+	</p>
+	</div>
+	<div id="LR" th:style="'display:'+${classify[2]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${classify_num[2]}+'.Logistic Regression'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Logistic regression, despite its name, is a linear model for classification rather than regression. Logistic regression
+				is also known in the literature as logit regression, maximum-entropy classification (MaxEnt) or the log-linear classifier.
+				In this model, the probabilities describing the possible outcomes of a single trial are modeled using a logistic function.
+				The implementation of logistic regression in scikit-learn can be accessed from class LogisticRegression. This implementation
+				can fit binary, One-vs- Rest, or multinomial logistic regression with optional L2 or L1 regularization. As an optimization
+				problem, binary class L2 penalized logistic regression minimizes the following cost function:</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula007.gif" align="bottom" hspace="8" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Similarly, L1 regularized logistic regression solves the following optimization problem:</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula008.gif" align="bottom" hspace="8" />
+	</p>
+	</div>
+	<div id="DL" th:style="'display:'+${classify[3]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${classify_num[3]}+'.Deep Learning'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Deep Learning have emerged as an important tool for classification. One major limitation of the statistical models (e.g.
+				Naive Bayes) is that they work well only when the underlying assumptions are satisfied. But neural networks are data
+				driven self-adaptive methods in that they can adjust themselves to the data without any explicit specification of functional
+				or distributional form for the underlying model. 1) Advantages: Neural networks are nonlinear models, which makes them
+				flexible in modeling real world complex relationships. Neural networks are able to estimate the posterior probabilities,
+				which provide the basis for establishing classification rule and performing statistical analysis. More than two hidden
+				nodes provide better classification. 2) Limitation: With increase in the number of input and hidden nodes, the parameters
+				needed for neural network also increases this result in over fitting of the data.</font>
+		</font>
+	</p>
+	</div>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	<div id="m_cluster" th:style="'display:'+${method[2]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b th:text="'3.'+${method_num[2]}+' Text Clustering'"></b></font>
+		</font>
+	</p>
+	<div id="DBSCAN" th:style="'display:'+${cluster[0]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${cluster_num[0]}+'.DBSCAN'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The DBSCAN algorithm is deterministic, always generating the same clusters when given the same data in the same order.
+				However, the results can differ when data is provided in a different order. First, even though the core samples will
+				always be assigned to the same clusters, the labels of those clusters will depend on the order in which those samples
+				are encountered in the data. Second and more importantly, the clusters to which non-core samples are assigned can differ
+				depending on the data order. This would happen when a non-core sample has a distance lower than eps to two core samples
+				in different clusters. By the triangular inequality, those two core samples must be more distant than eps from each other,
+				or they would be in the same cluster. The non-core sample is assigned to whichever cluster is generated first in a pass
+				through the data, and so the results will depend on the data ordering. The current implementation uses ball trees and
+				kd-trees to determine the neighborhood of points, which avoids calculating the full distance matrix.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The DBSCAN algorithm views clusters as areas of high density separated by areas of low density. Due to this rather generic
+				view, clusters found by DBSCAN can be any shape, as opposed to k-means which assumes that clusters are convex shaped.
+				The central component to the DBSCAN is the concept of core samples, which are samples that are in areas of high density.
+				A cluster is therefore a set of core samples, each close to each other (measured by some distance measure) and a set
+				of non-core samples that are close to a core sample (but are not themselves core samples). There are two parameters to
+				the algorithm, min_samples and eps, which define formally what we mean when we say dense. Higher min_samples or lower
+				eps indicate higher density necessary to form a cluster. More formally, we define a core sample as being a sample in
+				the dataset such that there exist min_samples other samples within a distance of eps, which are defined as neighbors
+				of the core sample. This tells us that the core sample is in a dense area of the vector space. A cluster is a set of
+				core samples that can be built by recursively taking a core sample, finding all of its neighbors that are core samples,
+				finding all of their neighbors that are core samples, and so on. A cluster also has a set of non-core samples, which
+				are samples that are neighbors of a core sample in the cluster but are not themselves core samples. Intuitively, these
+				samples are on the fringes of a cluster. Any core sample is part of a cluster, by definition. Any sample that is not
+				a core sample, and is at least eps in distance from any core sample, is considered an outlier by the algorithm. In the
+				figure below, the color indicates cluster membership, with large circles indicating core samples found by the algorithm.
+				Smaller circles are non-core samples that are still part of a cluster. Moreover, the outliers are indicated by black
+				points below.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/image004.jpg" align="bottom" hspace="8" />
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 1. An example of DBSCAN clustering</font>
+		</font>
+	</p>
+	</div>
+	<div id="BIRCH" th:style="'display:'+${cluster[1]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${cluster_num[1]}+'.BIRCH'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The Birch builds a tree called the Characteristic Feature Tree (CFT) for the given data. The data is essentially lossy
+				compressed to a set of Characteristic Feature nodes (CF Nodes). The CF Nodes have a number of subclusters called Characteristic
+				Feature subclusters (CF Subclusters) and these CF Subclusters located in the non-terminal CF Nodes can have CF Nodes
+				as children. A new sample is inserted into the root of the CF Tree which is a CF Node. It is then merged with the subcluster
+				of the root, that has the smallest radius after merging, constrained by the threshold and branching factor conditions.
+				If the subcluster has any child node, then this is done repeatedly till it reaches a leaf. After finding the nearest
+				subcluster in the leaf, the properties of this subcluster and the parent subclusters are recursively updated. If the
+				radius of the subcluster obtained by merging the new sample and the nearest subcluster is greater than the square of
+				the threshold and if the number of subclusters is greater than the branching factor, then a space is temporarily allocated
+				to this new sample. The two farthest subclusters are taken and the subclusters are divided into two groups on the basis
+				of the distance between these subclusters. If this split node has a parent subcluster and there is room for a new subcluster,
+				then the parent is split into two. If there is no room, then this node is again split into two and the process is continued
+				recursively, till it reaches the root. The figure below shows an example of Birch clustering: </font>
+		</font>
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/image005.jpg" align="bottom" hspace="8" />
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 2. An example of Birch clustering</font>
+		</font>
+	</p>
+	</div>
+	<div id="K-means" th:style="'display:'+${cluster[2]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${cluster_num[2]}+'.K-means'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The KMeans algorithm clusters data by trying to separate samples in n groups of equal variance, minimizing a criterion
+				known as the inertia or within-cluster sum-of-squares. This algorithm requires the number of clusters to be specified.
+				It scales well to large number of samples and has been used across a large range of application areas in many different
+				fields.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The k-means algorithm divides a set of <i>N</i> samples <i>X</i> into <i>K</i> disjoint clusters <i>C</i>, each described
+				by the mean </font>
+		</font> <img src="/images/papersummary/formula009.gif" style="vertical-align:middle;" />
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"> of the samples in the cluster. The means are commonly called the cluster “centroids”; note that they are not, in general,
+				points from <i>X</i>, although they live in the same space. The K-means algorithm aims to choose centroids that minimise
+				the inertia, or within-cluster sum of squared criterion:</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula010.gif" align="bottom" hspace="8" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">K-means is often referred to as Lloyd’s algorithm. In basic terms, the algorithm has three steps. The first step chooses
+				the initial centroids, with the most basic method being to choose <i>k</i> samples from the dataset <i>X</i>. After initialization,
+				K-means consists of looping between the two other steps. The first step assigns each sample to its nearest centroid.
+				The second step creates new centroids by taking the mean value of all of the samples assigned to each previous centroid.
+				The difference between the old and the new centroids are computed and the algorithm repeats these last two steps until
+				this value is less than a threshold. In other words, it repeats until the centroids do not move significantly.
+			</font>
+		</font>
+	</p>
+	</div>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	<div id="m_improve" th:style="'display:'+${method[3]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b th:text="'3.'+${method_num[3]}+' Method Based on Knowledge Graphs'"></b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">1.Semantic Similarity Measure Based on Knowledge Graphs</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">With the development of the Internet, people use the Internet not merely to describe the links between web pages, but
+				also to describe rich relationships between various entities. Under such a background, knowledge graph, essentially a
+				semantic network, has been widely used in many fields. As shown in Figure 3, the nodes of a knowledge graph can represent
+				entities or concepts; the edge can represent the semantic relationship between two nodes.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/image001.jpg" name="image001" align="bottom" hspace="1" vspace="1" width="553" height="262" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="width: 100%; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 3. An example of knowledge graph</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The improved algorithms proposed in this paper are based on the similarity between text entities calculated using knowledge
+				graph. Then we will describe the similarity measure method in detail.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">First, the text entities which belong to same category are grouped together into a tomographic tree. Many tree structures
+				formed by different categories of entities are combined to form a so-called knowledge graph that can represent the relationship
+				between entities more intuitively. Figure 4 shows a simple example.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/image002.jpg" name="image002" align="bottom" width="418" height="293" border="0" />
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 4. A tomographic tree formed by entities
+			</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Based on the knowledge graph ontology, we propose a lexical similarity score to measure the semantic closeness of two
+				entities. The reason we choose knowledge graph is that it classifies entities and semantically related entities are grouped
+				together. First, we define the concept of class chain.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Definition 1. Given an entity <i>e</i> which is mapped to class <i>C</i>, the class chain <i>Ce</i> of entity <i>e</i>				is a set consisting of all the classes that are on the path from root class to class <i>e</i>.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For example, the class chain of entity &ldquo;Football&quot; in Figure 4 is the set {Thing, Activity, Sport}. Then, in
+				order to measure the semantic distance between two entities, we use the number of hops between two entities.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Definition 2. Given two entities <i>e<sub>1</sub></i> and <i>e<sub>2</sub></i> which are mapped to class <i>C<sub>1</sub></i>				and <i>C<sub>2</sub></i> respectively, the distance <i>Dist(e<sub>1</sub>,e<sub>2</sub>)</i> between two entities <i>e<sub>1</sub></i>				and <i>e<sub>2</sub></i> is defined as the minimum number of hops from class <i>C<sub>1</sub></i> to <i>C<sub>2</sub></i>.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For example, the distance between &ldquo;Football&quot; and &ldquo;Brad Peter&quot; in Figure 2 is 5 because there is
+				a path Sport-&gt;Activity-&gt;Thing-&gt;Person-&gt;Artist-&gt;Actor with 5 hops. We define the similarity score between
+				two entities as follows:
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula001.gif" align="bottom" hspace="8" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We apply the Hungarian algorithm to solve the maximum weighted bipartite matching. The similarity score is used as the
+				input to the optimal algorithm.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	<div id="ws_improve" th:style="'display:'+${m_improve[0]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${m_improve_num[0]}+'.Enhance Word Segmentation Using Knowledge Graphs'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Given a document <i>N</i>, we first divide it into a word sequence using several state-of-the-art Chinese word segmentation
+				tools including IKAnalyzer, Ansj, SmartChineseAnalyzer, Jieba, HanLP and so on. Then from every kind of segmentation
+				result, we extract m keywords <i>{k<sub>1</sub>,k<sub>2</sub>,/papersummary.,k<sub>m</sub>}</i> using the TextRank algorithm. The
+				weight of the ticket is defined as follow:</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula002.gif" style="vertical-align:middle;" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">After getting the word segmentation results, our goal is to choose the most appropriate segmentation result based on the
+				correlation between the word and the topic of the text. For those results with the same segmentation words, we skip without
+				processing them; for different word results, we measure the relevance between the word <i>s</i> and the topic of the
+				document
+				<i>N</i> by calculating the average of semantic similarity score between <i>s</i> and m keywords <i>{k<sub>1</sub>,k<sub>2</sub>,/papersummary.,k<sub>m</sub>}</i>				of <i>N</i>. We select the final result which minimizes <i>Dist(s,N)</i>:
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula003.gif" style="vertical-align:middle;" />
+	</p>
+	<p class="western" style="margin-bottom: 0.1in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The following algorithm shows the details of our improved algorithm.</font>
+		</font>
+	</p>
+	<table>
+		<col width="540">
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western">
+					<font face="Cambria Math, serif">
+						<font size="3" style="font-size: 12pt"><span><b>Algorithm:</b> Optimize Chinese Word Segmentation</span>
+						</font>
+					</font>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western">
+					<font face="Cambria Math, serif" size="3" style="font-size: 12pt">
+						<span style="letter-spacing: -0.1pt"><b>Require:</b> k results of existing Chinese word breakers</span><br />
+						<span style="letter-spacing: -0.1pt"><b>Ensure:</b> Optimize word segmentation result R</span><br />
+						<span style="letter-spacing: -0.1pt"><b>int</b> dbpediapointer=0;</span><br />
+						<span style="letter-spacing: -0.1pt"><b>while</b> dbpediapointer&lt;results[1].getTextlength() <b>do</b></span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;"><b>int</b> std = 1;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;"><b>for</b> f=1 to k <b>do</b></span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;">words[f] = results[f].readword(dbpediapointer);</span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;"><b>for</b> f=2 to k <b>do</b></span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 4em;"><b>if</b> !words[f].equals(words[std]) <b>then</b></span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 6em;"><b>if</b> findNode(words[f]) <b>then</b></span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 8em;"><b>if</b> !findNode(words[std]) <b>then</b> std = f;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 8em;"><b>else</b></span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 10em;"><b>double</b> fp = Dist(words[f],results[f]);</span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 10em;"><b>double</b> sp = Dist(words[stf],results[std]);</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 10em;"><b>if</b> fp&lt;sp <b>then</b> std = f;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;">R.addword(words[std]);</span><br />
+						<span style="letter-spacing: -0.1pt; margin-left: 2em;">dbpediapointer += words[std].length();</span><br />
+						<span style="letter-spacing: -0.1pt"><b>end</b></span>
+					</font>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0.1in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">In addition, we maintain a word vector matrix M to store the conceptual distance <i>DBSim(x,y)</i> between words. Each
+				time the distance we need, it is first searched from the matrix M. If <i>DBSim(x,y)</i> exists, get the value from M
+				directly; if it does not exist, compute DBSim based on knowledge graph and update the matrix M. Algorithm below shows
+				how to calculate <i>Dist(s,N)</i>.
+			</font>
+		</font>
+	</p>
+	<table>
+		<col width="540">
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western">
+					<font face="Cambria Math, serif">
+						<font size="3" style="font-size: 12pt"><span><b>Algorithm:</b> Calculation on <i>Dist(s,N)</i></span>
+						</font>
+					</font>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="540" valign="top" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
+				<p class="western" align="justify" style="margin-bottom: 0in; orphans: 2; widows: 2">
+					<font face="Cambria Math, serif" size="3" style="font-size: 12pt">
+						<span style="letter-spacing: -0.1pt"><b>Require:</b> word <i>s</i> and document <i>N</i></span><br />
+						<span style="letter-spacing: -0.1pt"><b>Ensure:</b> the conceptual distances between <i>s</i> and document <i>N</i></span><br/>
+						<span style="letter-spacing: -0.1pt"><b>List&lt;String&gt;</b> keywords = TextRankKeyword(<i>N</i>);</span><br/>
+						<span style="letter-spacing: -0.1pt"><b>double</b> distance = 0;</span><br/>
+						<span style="letter-spacing: -0.1pt"><b>int</b> count = 0;</span><br/>
+						<span style="letter-spacing: -0.1pt"><b>for</b> word k in keywords <b>do</b></span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left:2em;"><b>if</b> findNode(k) <b>then</b></span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left:4em;">count++;</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left:4em;"><b>if</b> M[s][k]==null <b>then</b></span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left:6em;">M[s][k] = getDBSim(s, k);</span><br/>
+						<span style="letter-spacing: -0.1pt; margin-left:4em;">distance += M[s][k];</span><br/>
+						<span style="letter-spacing: -0.1pt"><b>return</b> distance/count;</span>
+					</font>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	<div id="classify_improve" th:style="'display:'+${m_improve[1]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${m_improve_num[1]}+'.Improve Text Classification Using Knowledge Graphs'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Text classification refers to the technology of automatically deciding whether the natural language text belongs to one
+				or more category according to the text content under the given category model. Currently, many research methods of text
+				classification have been developed, which mainly fall in three groups: the first one is statistics-based text categorization,
+				such as the Naive Bayesian, K-nearest Neighbor, Support Vector Machine and Maximum Entropy model, etc. The second group
+				is the connectionism-based text classification, i.e. artificial neural networks. The third one is the rule-based text
+				classification, like decision tree. In terms of evaluation indexes like precision, recall and f-value, Reference has
+				proved that KNN and SVM outperform the other algorithms with the method of hypothesis testing. In this paper, we present
+				our approach on improving KNN and SVM using semantic similarity based on knowledge graph.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We have known that KNN compute <i>Sim(x,d<sub>i</sub>)</i> which is the cosine similarity between the document to be classified
+				and the sample document. Our approach proposes to add semantic similarity <i>DBSim(x,d<sub>i</sub>)</i> based on knowledge
+				graph to improve KNN algorithm. We define the similarity score between the document to be classified and the sample document
+				as follows:</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/formula006.gif" style="vertical-align:middle;" />
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Similarly, We define the distance in improved SVM algorithm as: alpha multiply traditional_distance plus beta multiply
+				concept_distance, where alpha plus beta equals 1.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The flow chart of the improved text classification algorithm based on knowledge graph is shown in Figure 5.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img src="/images/papersummary/image003.jpg" name="image003" align="bottom" width="423" height="399" border="0" />
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 5. Flow chart of the improved text classification algorithm</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">The main innovation of the improved algorithm is to improve the calculation of the similarity between texts. There are
+				many formulas to calculate the similarity, but it is difficult to determine which one is more accurate. Knowledge graph
+				can present the similar relations between entities well. The conceptual distance between entities calculated by using
+				knowledge graphs is more credible. Therefore, the calculation of the similarity of conceptual distance texts based on
+				the original similarity calculation formula is more effective, and then can make the basic classifier has a better classification
+				effect.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	<div id="cluster_improve" th:style="'display:'+${m_improve[2]}">
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="${m_improve_num[2]}+'.Improve K-means Using Knowledge Graphs'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Recently, machine learning algorithms based on knowledge graph preform perfectly. In this case, we produce a new method
+				to improve the clustering results of k-Means. We use a new distance as we call the concept distance. Given two documents
+				<i>M</i> and <i>N</i>, where <i>M</i> contains m words and <i>N</i> contains n words. Based on the related knowledge
+				graph, we query the shortest length of path among words of two documents. We present the path length as a matrix <i>L</i>				standing for the path length between two words.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We regard the matrix <i>L</i> as a Bipartite Graph, so the set of words is the vertex set. If there is a path in the knowledge
+				graph between two words from each document, the corresponding vertexes have a edge to be connected, and the length of
+				the shortest path as a weight to describe the degree of the relationship. Assuming that if there is a strong connection
+				bewteen two documents, the weights of edges will less than that of weak connection in magnitude. In this case, we apply
+				the Hungarian Algorithm to calculate the Maximum Matching of two documents, which represent the related degree between
+				documents. To avoid the influence of both documents' length and magnitude, we normalize the maximum matching in two steps.
+				The first step is using the value of the maximum matching dividing by the longest length between two documents. After
+				calculate whole set of documents maximum matching, we use the follow formula to normalize again. The final value is the
+				concept distance.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br />
+	</p>
+	</div>
+	</div>
+	
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>4.Experiment</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We conduct a series of experiments to evaluate the performance of the comparision algorithms over <span th:text="${dsnum}"></span>.
+				In this section, we describe the experimental setup followed by the discussion of results.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>4.1 Settings</b></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">In this paper, we use <span th:text="${dsnum}"></span> that are available publicly. The details are shown as follows.</font>
+		</font>
+	</p>
+	<ol>
+		<li th:each="dataset : ${datasets}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${dataset.name}"></b><b>:</b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${dataset.description}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%; orphans: 2; widows: 2">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><span style="letter-spacing: -0.1pt">Table 1: Datasets</span></font>
+		</font>
+	</p>
+		<table style="margin:0 auto; border-collapse: collapse;">
+			<col width="120">
+			<col width="125">
+			<col width="155">
+			<col width="155">
+			<col width="155">
+			<tr>
+				<td width="120" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>name</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="125" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>number of text</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>maximum text size</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>minimum text size</b></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b>average text size</b></font>
+						</font>
+					</p>
+				</td>
+			</tr>
+			<tr th:each="dataset : ${datasets}">
+				<td width="120" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt"><b th:text="${dataset.name}"></b></font>
+						</font>
+					</p>
+				</td>
+				<td width="125" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.textnum}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.maxlen}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.minlen}"></font>
+						</font>
+					</p>
+				</td>
+				<td width="155" style="border: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+					<p class="western" align="center">
+						<font face="Cambria, serif">
+							<font size="3" style="font-size: 12pt" th:text="${dataset.averlen}"></font>
+						</font>
+					</p>
+				</td>
+			</tr>
+		</table>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br/>
+	</p>
+
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt"><b>4.2 Results</b></font>
+		</font>
+	</p>
+	<div id="ws_result" th:style="'display:'+${eStrings[0]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'4.2.'+${e_num[0]}+' Word Segmentation Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For word segmentation methods, we conduct a group of experiment that compares our proposed algorithm with other algorithms.
+				In the experiments, we choose the average accuracy rate, recall rate and F1 score in results as the evaluating metrics,
+				and run all the algorithms on all datasets. We benchmark the following baseline methods for word segmentation:</font>
+		</font>
+	</p>
+	<ol>
+		<li  th:each="ws: ${wsList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 6 shows the average accuracy rate, recall rate and F1 score of different algorithms on all the three datasets.
+				The algorithm has been sorted in ascending order of F-score values. At the same time, Table 2 gives specific results.
+				As shown in the figure, we can find that <span th:text="${best_ws}"></span> has significantly improved performance compared to other
+				algorithms.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${ws_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 6. The Comparison of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 2: Word Segmentation Performance of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${ws_table}" name="result002" align="bottom" hspace="1" vspace="1" width="600" height="385" border="0"
+		/>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	<div id="sa_result">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">4.2.2 Sentiment Analysis</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">We performed sentiment analysis over all datasets. Figure 7 shows the visualized results of the sentiment analysis; Table
+				3 shows the results of the sentiment classification.</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${sa_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="350" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 7. The Visualized Results of Sentiment Analysis</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 3: The Results of Sentiment Classification</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${sa_table}" name="result002" align="bottom" hspace="1" vspace="1" width="550" height="90" border="0"
+		/>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	
+	<div id="cf_result" th:style="'display:'+${eStrings[1]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'4.2.'+${e_num[1]}+' Text Classification Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For text classification algorithms, we choose the average accuracy rate, recall rate and F1 score in
+				results as the evaluating metrics, and we benchmark the following baseline methods for word segmentation:</font>
+		</font>
+	</p>
+		<ol>
+		<li th:each="ws: ${classifierList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 8 shows the average accuracy rate, recall rate and F1 score of different algorithms over all the datasets. At the
+				same time, Table 4 gives specific results. As shown in the figure, we can find that <span th:text="${best_classifier}"></span> has significantly
+				improved performance compared to other algorithms.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${classify_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 8. The Comparison of Different Classification Algorithm</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 4: Text Classification Performance of Different Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${classify_table}" name="result006" align="bottom" hspace="1" width="600" height="285" border="0" />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	</div>
+	
+	<div id="cf_result" th:style="'display:'+${eStrings[2]}">
+	<p class="western" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt" th:text="'4.2.'+${e_num[2]}+' Text Clustering Results'"></font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Evaluating the performance of a clustering algorithm is not as trivial as counting the number of errors or the precision
+				and recall of a supervised classification algorithm. In particular any evaluation metric should not take the absolute
+				values of the cluster labels into account but rather if this clustering define separations of the data similar to some
+				ground truth set of classes or satisfying some assumption such that members belong to the same class are more similar
+				that members of different classes according to some similarity metric. In the experiments, we choose the homogeneity,
+				completeness and their V-measure as the evaluating metric.</font>
+		</font>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">For text clustering, we conduct a group of experiment that compares our proposed algorithm with other algorithms on all
+				the datasets. We benchmark the following baseline methods:</font>
+		</font>
+	</p>
+	<ol>
+		<li th:each="ws: ${clusterList}">
+		<p style="margin-bottom: 0in; line-height: 130%">
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt"><b th:text="${ws[0]}+':'"></b></font>
+			</font>
+			<font face="Cambria, serif">
+				<font size="3" style="font-size: 12pt" th:text="${ws[1]}"></font>
+			</font>
+		</p>
+		</li>
+	</ol>
+
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Figure 9 shows the result over all the datasets. At the same time, Table 5 gives specific results. It is observed that
+				comparing a series clustering methods, <span th:text="${best_cluster}"></span> gives better results. Among all approaches, <span th:text="${best_cluster}"></span>
+				outperforms other baselines on all the datasets.
+			</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${cluster_figure}" name="result001" align="bottom" hspace="1" vspace="1" width="554" height="259" border="0"
+		/>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0.2in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Fig 9. The Comparison of Different Clustering Algorithm</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">Table 5: Evaluation of Different Clustering Algorithms</font>
+		</font>
+	</p>
+	<p class="western" align="center" style="margin-bottom: 0in; line-height: 130%">
+		<img th:src="${cluster_table}" name="result007" align="bottom" hspace="1" width="800" height="120" border="0" />
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 130%"><br/>
+	</p>
+	<p class="western" style="text-indent: 0.29in; margin-bottom: 0in; line-height: 130%">
+		<br/>
+	</p>
+	</div>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="4" style="font-size: 14pt"><b>Referances</b></font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[1] Xue N. Chinese word segmentation as character tagging[J]. International Journal of Computational Linguistics, 2003,
+				8(1):29-47.
+			</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[2] NY Liang. The Modern Chinese Distinguishing Words System&mdash;CDWS[J]. Journal of Chinese Information Processing,
+				1987, 1(2):46-54.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[3] Chen, K. J. and Liu S.H. Word identification for Mandarin Chinese sentences. Proceedings of the 14th International
+				Conference on Computational Linguistics. 1992.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[4] Nianwen Xue and Susan P. Converse. Combining Classifiers for Chinese Word Segmentation, First SIGHAN Workshop attached
+				with the 19th COLING, Taipei, 2002.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[5] Guillaume Lample, Miguel Ballesteros, Sandeep Subramanian, Kazuya Kawakami, and Chris Dyer. Neural architectures for
+				named entity recognition. arXiv preprint arXiv:1603.01360. 2016.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[6] Research on Text Classification Algorithm Based on Knowledge Graph</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[7] Bijalwan, V., Kumar, V., Kumari, P., and Pascual, J. 2014. KNN based machine learning approach for text and document
+				mining. International Journal of Database Theory and Application, 7(1), 61-70.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[8] Platt, J. 1999. Fast training of support vector machines using sequential minimal optimization. Advances in kernel
+				methods&mdash;support vector learning, 3. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[9] Vapnik, V., Golowich, S. E., and Smola, A. 1996. Support vector method for function approximation, regression estimation,
+				and signal processing. InAdvances in Neural Information Processing Systems 9. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[10] Tong, S., and Chang, E. 2001. Support vector machine active learning for image retrieval. In Proceedings of the ninth
+				ACM international conference on Multimedia (pp. 107-118). ACM.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[11] Ting, S. L., Ip, W. H., and Tsang, A. H. 2011. Is Naive Bayes a good classifier for document classification?. International
+				Journal of Software Engineering and Its Applications, 5(3), 37-46. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[12] Lewis, D. D. 1998. Naive (Bayes) at forty: The independence assumption in information retrieval. In Machine learning:
+				ECML-98 (pp. 4-15). Springer Berlin Heidelberg.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[13] Guoqiang Peter Zhang, November 2000, &ldquo;Neural Networks for Classification: A Survey&rdquo;, IEEE Transactions
+				on systems, man and cybernetics-Part C, Applications and Reviews, Vol. 30, NO. 4. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[14] Larry Manevitz, Malik Yousef, 2007, &ldquo;One-class document classification via Neural Networks&rdquo;, Neurocomputing
+				70, 1466&ndash;1481, Elsevier. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[15] David Faraggi, Richard Simon, 1995, &ldquo;The maximum likelihood neural network as a statistical classification
+				model&rdquo;, Journal of Statistical Planning and Inference 46, 93-104, Elsevier. </font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[16] Ali Selamat, Sigeru Omatu, 2004, &ldquo;Web page feature selection and classification using neural networks&rdquo;,
+				Information Sciences 158, 69&ndash;88, Elsevier.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[17] Michael Steinbach, George Karypis, Vipin Kumar, et al. 2000. A comparison of document clustering techniques. In KDD
+				workshop on text mining, Vol. 400. Boston, 525&ndash;526.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[18] Ying Zhao and George Karypis. 2004. Empirical and theoretical comparisons of selected criterion functions for document
+				clustering. Machine Learning 55, 3 (2004), 311&ndash;331.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[19] Rui Xu, Donald Wunsch, et al. 2005. Survey of clustering algorithms. Neural Networks, IEEE Transactions on 16, 3
+				(2005), 645&ndash;678.</font>
+		</font>
+	</p>
+	<p class="western" style="margin-bottom: 0in; line-height: 100%">
+		<font face="Cambria, serif">
+			<font size="3" style="font-size: 12pt">[20] Research on Keyword Extraction Algorithm for Chinese Text Based on Document Topic Structureand Semantics</font>
+		</font>
+	</p>
+</body>
+</html>
